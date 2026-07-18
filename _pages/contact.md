@@ -10,6 +10,6 @@ You can contact me by email at:
 
 You can also find me on:
 
-- [GitHub](https://github.com/Fchewie)
+- [GitHub](https://github.com/francescomonastra)
 - [ORCID](https://orcid.org/0009-0007-1675-6223)
 - [LinkedIn](www.linkedin.com/in/francesco-monastra-25a58a20a)
