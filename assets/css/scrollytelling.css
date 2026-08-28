@@ -1,0 +1,71 @@
+/* Organic single-column scrollytelling styles */
+.scrolly-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.scrolly-step {
+  margin-bottom: 6em;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.scrolly-step.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scrolly-step h2 {
+  font-size: 2em;
+  margin-bottom: 1em;
+  color: #2c3e50;
+}
+
+.scrolly-visual {
+  margin: 2em 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.scrolly-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.scrolly-visual-caption {
+  margin: 0.6em 0 0;
+  padding: 0 0.2em;
+  font-size: 0.85em;
+  font-style: italic;
+  line-height: 1.4;
+  color: #6b7785;
+}
+
+.scrolly-plotly {
+  min-height: 400px;
+  margin: 2em 0;
+}
+
+/* Category-specific accents */
+.scrolly-step[data-category="interests"] h2 {
+  color: #1a5f8e;
+}
+
+.scrolly-step[data-category="simulation"] h2 {
+  color: #1e8449;
+}
+
+.scrolly-step[data-category="inference"] h2 {
+  color: #c0392b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrolly-step {
+    transition: none;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
