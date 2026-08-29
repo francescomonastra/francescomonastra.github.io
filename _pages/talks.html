@@ -2,9 +2,18 @@
 layout: archive
 title: "Talks and presentations"
 permalink: /talks/
-author_profile: true
 ---
 
-{% for post in site.talks reversed %}
-  {% include archive-single-talk.html %}
-{% endfor %}
+{% include base_path %}
+
+<header class="page-hero">
+  <div class="rlog-eyebrow">Record</div>
+  <h1>Talks &amp; presentations</h1>
+  <p class="lede">Conference talks and presentations on detector background modeling and generative simulation.</p>
+</header>
+
+<div class="rlog-cardlist" style="--accent:var(--gold); --accent-tint:var(--gold-tint);">
+  {% for post in site.talks reversed %}
+    {% include archive-single-talk.html %}
+  {% endfor %}
+</div>

@@ -1,15 +1,31 @@
 ---
 title: "Contact"
 permalink: /contact/
-author_profile: true
 ---
 
-You can contact me by email at:
+<header class="page-hero">
+  <div class="rlog-eyebrow">Get in touch</div>
+  <h1>Contact</h1>
+</header>
 
-**francesco.monastra@inaf.it**
+<div class="rlog-cardlist">
 
-You can also find me on:
+<section class="rlog-card" style="--accent:var(--rust); --accent-tint:var(--rust-tint);">
+  <div class="chan"><span class="dot"></span><span class="rlog-eyebrow">Email</span></div>
+  <h2>francesco.monastra@inaf.it</h2>
+  <div class="rlog-btnrow">
+    <a class="rlog-btn" href="mailto:francesco.monastra@inaf.it">&#9993; Send an email</a>
+  </div>
+</section>
 
-- [GitHub](https://github.com/francescomonastra)
-- [ORCID](https://orcid.org/0009-0007-1675-6223)
-- [LinkedIn](www.linkedin.com/in/francesco-monastra-25a58a20a)
+<section class="rlog-card" style="--accent:var(--blue); --accent-tint:var(--blue-tint);">
+  <div class="chan"><span class="dot"></span><span class="rlog-eyebrow">Elsewhere</span></div>
+  <h2>Find me online</h2>
+  <div class="rlog-btnrow">
+    <a class="rlog-btn ghost" href="https://github.com/francescomonastra">GitHub</a>
+    <a class="rlog-btn ghost" href="https://orcid.org/0009-0007-1675-6223">ORCID</a>
+    <a class="rlog-btn ghost" href="https://www.linkedin.com/in/francesco-monastra-25a58a20a">LinkedIn</a>
+  </div>
+</section>
+
+</div>

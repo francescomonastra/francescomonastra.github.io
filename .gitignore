@@ -21,3 +21,6 @@ package-lock.json
 
 # Ignore files created by MacOS
 .DS_Store
+
+# Ignore local Claude Code settings (may contain local gateway keys)
+.claude/settings.local.json

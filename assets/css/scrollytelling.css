@@ -1,71 +1,228 @@
-/* Organic single-column scrollytelling styles */
-.scrolly-container {
-  max-width: 800px;
+/*
+  Research page only: the scroll-tracked "instrument log" treatment --
+  a hero with a live spectrum trace, a sticky channel nav, and count-up
+  stat readouts. Shared card/tag/button/hero-label components used across
+  the rest of the site live in site-theme.css; this file holds only what
+  is genuinely specific to Research (the multi-channel scrollytelling
+  shell, the bigger hero, and the reveal-on-scroll motion).
+*/
+
+.rlog-shell {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
-.scrolly-step {
-  margin-bottom: 6em;
+/* ---------- channel nav ---------- */
+
+.rlog-channelnav {
+  position: sticky;
+  top: 30vh;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+  padding-top: 40px;
+}
+
+.rlog-channelnav button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-faint);
+}
+
+.rlog-channelnav .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.rlog-channelnav .lbl {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.rlog-channelnav button[data-active="true"] .dot {
+  background: var(--accent, var(--blue));
+  transform: scale(1.5);
+  box-shadow: 0 0 0 5px var(--accent-tint, var(--blue-tint));
+}
+
+.rlog-channelnav button[data-active="true"] .lbl {
+  color: var(--ink);
+}
+
+/* ---------- hero (bigger than the shared .page-hero, carries the canvas trace) ---------- */
+
+.rlog-hero {
+  position: relative;
+  padding: 40px 12px 96px;
+  overflow: hidden;
+}
+
+.rlog-hero canvas {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 90px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.rlog-hero-inner {
+  position: relative;
+  max-width: 640px;
+}
+
+.rlog-hero h1 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
+  line-height: 1.1;
+  margin: 0.5rem 0 1.1rem;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.rlog-hero p.lede {
+  font-size: 1.05rem;
+  line-height: 1.62;
+  color: var(--ink-soft);
+  max-width: 56ch;
+  margin: 0 0 1.4rem;
+}
+
+.rlog-hero .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ---------- channel cards: bigger than the shared card, and reveal on scroll ---------- */
+
+.rlog-shell .rlog-card {
+  padding: 38px 42px 42px;
+  margin: 0 12px 28px;
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.scrolly-step.is-visible {
+.rlog-shell .rlog-card.in {
   opacity: 1;
   transform: translateY(0);
 }
 
-.scrolly-step h2 {
-  font-size: 2em;
-  margin-bottom: 1em;
-  color: #2c3e50;
+.rlog-shell .rlog-card h2 {
+  font-size: 2rem;
 }
 
-.scrolly-visual {
-  margin: 2em 0;
-  border-radius: 8px;
+@media (max-width: 640px) {
+  .rlog-shell .rlog-card {
+    padding: 30px 24px 34px;
+    margin: 0 0 22px;
+  }
+}
+
+/* ---------- readout stat row ---------- */
+
+.rlog-readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md, 14px);
   overflow: hidden;
+  margin: 6px 0 24px;
 }
 
-.scrolly-visual img {
+.rlog-readout .cell {
+  background: var(--paper-raised);
+  padding: 16px 14px;
+}
+
+.rlog-readout .num {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.rlog-readout .lbl {
+  margin-top: 6px;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  line-height: 1.35;
+}
+
+/* ---------- figure ---------- */
+
+.rlog-scope {
+  margin: 6px 0 24px;
+}
+
+.rlog-scope .frame {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md, 14px);
+  overflow: hidden;
+  background: #fff;
+}
+
+.rlog-scope img {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
 }
 
-.scrolly-visual-caption {
-  margin: 0.6em 0 0;
-  padding: 0 0.2em;
-  font-size: 0.85em;
+.rlog-scope figcaption {
+  margin-top: 9px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
   font-style: italic;
-  line-height: 1.4;
-  color: #6b7785;
 }
 
-.scrolly-plotly {
-  min-height: 400px;
-  margin: 2em 0;
-}
-
-/* Category-specific accents */
-.scrolly-step[data-category="interests"] h2 {
-  color: #1a5f8e;
-}
-
-.scrolly-step[data-category="simulation"] h2 {
-  color: #1e8449;
-}
-
-.scrolly-step[data-category="inference"] h2 {
-  color: #c0392b;
+.rlog-footnote {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 12px 60px;
+  color: var(--ink-faint);
+  font-size: 0.82rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scrolly-step {
+  .rlog-shell .rlog-card {
     transition: none;
-    opacity: 1 !important;
-    transform: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .rlog-shell {
+    grid-template-columns: 1fr;
+  }
+  .rlog-channelnav {
+    display: none;
   }
 }
